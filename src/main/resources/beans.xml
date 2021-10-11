@@ -7,11 +7,22 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-<!--    <bean id="musicBean" class="laptenkov.genre.ClassicalMusic"></bean>-->
-<!--    <bean id="musicBean" class="laptenkov.genre.RockMusic"></bean>-->
-    <bean id="musicBean" class="laptenkov.genre.PopMusic"/>
+    <bean id="classicalBean" class="laptenkov.genre.ClassicalMusic"></bean>
+    <bean id="rockBean" class="laptenkov.genre.RockMusic"></bean>
+    <bean id="popBean" class="laptenkov.genre.PopMusic"/>
+
+    <bean id="genreList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="classicalBean" />
+                <ref bean="rockBean" />
+                <ref bean="popBean" />
+            </list>
+        </constructor-arg>
+    </bean>
+
     <bean id="musicBox" class="laptenkov.MusicBox">
-        <constructor-arg ref="musicBean"/>
+        <constructor-arg ref="genreList"/>
     </bean>
 
 </beans>
